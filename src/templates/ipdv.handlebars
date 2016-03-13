@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PDV>
+    <pdvid>{{ iddoc }}</pdvid>
+    <docClass namespace="conservazione.docExt">{{ docClass }}</docClass>
+    <files>
+        {{#each fatture}}
+        <file>
+            <docid>{{ this.docid }}</docid>
+            <filename>{{ this.filename }}</filename>
+            <mimetype>{{ this.mimetype }}</mimetype>
+            <closingDate>{{ this.closingDate }}</closingDate>
+            <hash algorithm="SHA-256">
+                <value>{{{ this.sha256 }}}</value>
+            </hash>
+            <metadata>
+                <mandatory>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>dataDocumento</name>
+                        <value>{{ this.dataDocumento }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>dataDocumentoTributario</name>
+                        <value>{{ this.dataDocumentoTributario }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>oggettodocumento</name>
+                        <value>{{ this.oggettodocumento }}</value>
+                    </singlemetadata>
+                    <complexmetadata namespace="conservazione.doc" name="soggettoproduttore" namespaceNode="conservazione.soggetti" nodeName="soggetto">
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>codicefiscale</name>
+                            <value>{{ this.prod_codicefiscale }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>cognome</name>
+                            <value>{{ this.prod_cognome }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>denominazione</name>
+                            <value>{{ this.prod_denominazione }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>nome</name>
+                            <value>{{ this.prod_nome }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>partitaiva</name>
+                            <value>{{ this.prod_partitaiva }}</value>
+                        </singlemetadata>
+                    </complexmetadata>
+                    <complexmetadata namespace="conservazione.doc" name="destinatario" namespaceNode="conservazione.soggetti" nodeName="soggetto">
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>codicefiscale</name>
+                            <value>{{ this.con_codicefiscale }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>cognome</name>
+                            <value>{{ this.con_cognome }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>denominazione</name>
+                            <value>{{ this.con_denominazione }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>nome</name>
+                            <value>{{ this.con_nome }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>partitaiva</name>
+                            <value>{{ this.con_partitaiva }}</value>
+                        </singlemetadata>
+                    </complexmetadata>
+                    <complexmetadata namespace="conservazione.doc" name="soggettotributario" namespaceNode="conservazione.soggetti" nodeName="soggetto">
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>codicefiscale</name>
+                            <value>{{ this.tax_codicefiscale }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>cognome</name>
+                            <value>{{ this.tax_cognome }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>denominazione</name>
+                            <value>{{ this.tax_denominazione }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>nome</name>
+                            <value>{{ this.tax_nome }}</value>
+                        </singlemetadata>
+                        <singlemetadata>
+                            <namespace>conservazione.soggetti</namespace>
+                            <name>partitaiva</name>
+                            <value>{{ this.tax_partitaiva }}</value>
+                        </singlemetadata>
+                    </complexmetadata>
+                </mandatory>
+                <extrainfos>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>allegato1</name>
+                        <value>{{ this.allegato1 }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>allegato2</name>
+                        <value>{{ this.allegato2 }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>applicativoProduzione</name>
+                        <value>{{ this.applicativoProduzione }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>cfTitolareFirma</name>
+                        <value>{{ this.cfTitolareFirma }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>codiceTipologia</name>
+                        <value>{{ this.codiceTopologia }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>condizioniAccesso</name>
+                        <value>{{ this.condizioniAccesso }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>esito</name>
+                        <value>{{ this.esito }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>idDocumentoOriginale</name>
+                        <value>{{ this.idDocumentoOriginale }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>idOrigine</name>
+                        <value>{{ this.idOrigine }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>idFascicolo</name>
+                        <value>{{ this.idFascicolo }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>idSistemaVersante</name>
+                        <value>{{ this.idSistemaVersante }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>livelloRiservatezza</name>
+                        <value>{{ this.livelloRiservatezza }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>nomeSezionale</name>
+                        <value>{{ this.nomeSezionale }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>note1</name>
+                        <value>{{ this.note1 }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>note2</name>
+                        <value>{{ this.note2 }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>ddt</name>
+                        <value>{{ this.ddt }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>notaAccredito</name>
+                        <value>{{ this.notaAccredito }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>progressivo</name>
+                        <value>{{ this.progressivo }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>numeroFattura</name>
+                        <value>{{ this.numeroFattura }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>sezionale</name>
+                        <value>{{ this.sezionale }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>soggettoImposta</name>
+                        <value>{{ this.soggettoImposta }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>tipoNotifica</name>
+                        <value>{{ this.tipoNotifica }}</value>
+                    </singlemetadata>
+                    <singlemetadata>
+                        <namespace>conservazione.doc</namespace>
+                        <name>tipologia</name>
+                        <value>{{ this.tipologia }}</value>
+                    </singlemetadata>
+                </extrainfos>
+            </metadata>
+        </file>
+        {{/each}}
+    </files>
+</PDV>

@@ -1,0 +1,130 @@
+.File {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 1px;
+
+    &-Message {
+        user-select: none;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 900;
+        color: #ccc;
+        margin-top: 40px;
+        > div {
+            margin: 0 auto 20px auto;
+        }
+
+        &-Subtitle {
+            font-size: 16px;
+            font-weight: 100;
+            font-style: italic;
+        }
+    }
+
+    &-Menu {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &-Add {
+            flex: 0 1 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+
+            &-Button {
+                width: 100%;
+            }
+
+            &-Message {
+                text-align: center;
+                font-style: italic;
+                font-size: 13px;
+            }
+        }
+
+        &-Download {
+            flex: 0 1 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: right;
+            &-Button {
+                width: 100%;
+            }
+        }
+    }
+
+    &-List {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-top: 30px;
+        border: 1px solid black;
+        /*box-shadow: inset 0 0 10px #000000;*/
+
+        &-Container {
+            flex: 1 1 auto;
+            &--scroll {
+                overflow-y: scroll;
+            }
+        }
+
+        &-Item {
+            user-select: none;
+            padding: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+
+            &-Name {
+                float: left;
+                width: 50%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                span {
+                    text-decoration: underline;
+                }
+            }
+
+            &-Remove {
+                margin-left: 50%;
+                width: 50%;
+                text-align: right;
+                span {
+                    text-decoration: underline;
+                    i {
+                        margin-right: 3px;
+                    }
+                }
+            }
+
+            &--odd {
+                background-color: #EEE;
+            }
+
+            &--even {
+                background-color: #DDD;
+            }
+            
+            &--selected {
+                background-color: darkcyan;
+                color: white;
+                /*border: 2px solid black;*/
+                /*padding: 18px;*/
+            }
+
+            /*
+            &--invalid {
+                background-color: lightcoral;
+            }
+
+            &--selected&--invalid {
+                background-color: red;
+            }*/
+        }
+    }
+}

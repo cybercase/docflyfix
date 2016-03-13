@@ -1,0 +1,70 @@
+.Fatture {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    width: 100%;
+
+    &-Error {
+        font-size: 24px;
+    }
+
+    &-Modal {
+        text-align: center;
+        &-Title {
+            font-size: 36px;
+            margin-bottom: 0;
+        }
+        &-Subtitle {
+            text-align: left;
+            margin-top: -5px;
+            color: gray;
+            font-style: italic;
+        }
+        &-Id {
+            margin: 20px 0;
+            input {
+                width: 100%;
+            }
+        }
+        &-Submit {
+            margin: 10px 0;
+            input {
+                width: 100%;
+                &[type="submit"]:disabled {
+                    color: lightgray;
+                }
+            }
+        }
+    }
+
+    &-File {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid black;
+        width: 50%;
+        padding: 40px 20px 40px 20px;
+    }
+
+    &-Form {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding: 40px 20px 0 20px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    &-Message {
+        user-select: none;
+        text-align: center;
+        font-size: 36px;
+        color: #ccc;
+        margin-top: 40px;
+        font-weight: 800;
+        div {
+            margin: 0 auto 20px auto;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+.FormFatture {
+    flex: 0 0 100%;
+
+    &-Row {
+        margin-bottom: 20px;
+
+        label {
+            float: left;
+            width: 50%;
+            display: block;
+        }
+
+        input, div {
+            margin-left: 50%;
+            width: 50%;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &--right {
+            text-align: right;
+        }
+    }
+
+    &-Separator {
+        text-align: right;
+        margin-bottom: 20px;
+        margin-top: 43px;
+        text-decoration: italic;
+        font-weight: 100;
+        font-size: 36px;
+        border-bottom: 1px solid;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &-Field {
+        /*font-family: monospace;*/
+        font-size: 16px;
+        border: 2px solid transparent;
+
+        &--error {
+            /*border: 2px solid red;*/
+            text-decoration: underline;
+            color: red;
+        }
+
+        &--mandatory {
+            font-weight: 900;
+        }
+    }
+}
