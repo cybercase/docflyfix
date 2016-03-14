@@ -5,12 +5,12 @@ import { Provider, connect } from 'react-redux'
 import configureStore from 'configureStore'
 
 import Fatture from 'containers/Fatture'
+import Notifiche from 'containers/Notifiche'
 import Home from 'containers/Home'
 import App from 'containers/App'
 
 const store = configureStore()
 
-const Notifiche = (props) => { return <div>TODO... <a href="" onClick={() => window.history.back() }>Back</a></div> }
 
 export default class Root extends React.Component {
   render() {

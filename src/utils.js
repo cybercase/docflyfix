@@ -1,6 +1,7 @@
 import Moment from 'moment'
 
-export const RFC3339Nano = "YYYY-MM-DDTHH:mm:ss.SSSSSSSS[Z]"
+// CAVEATS: Moments replace Z with "UTC" or "+00:00"... see: https://www.ietf.org/rfc/rfc3339.txt
+export const RFC3339Nano = "YYYY-MM-DDTHH:mm:ss.SSSSSSSS[Z]" 
 
 const VALIDATE = {
     MANDATORY: "Obbligatorio",
@@ -44,9 +45,25 @@ export function validateFatture(values) {
         errors.dataDocumentoTributario = VALIDATE.INVALID_DATE
     }
 
-    // if (!values.closingDate || !isValidDate(values.closingDate)) {
-    //     errors.closingDate = VALIDATE.INVALID_DATE
-    // }
+    // Optional
+    if (values.dataDocumento && !isValidDate(values.dataDocumento)) {
+        errors.dataDocumento = VALIDATE.INVALID_DATE
+    }
+
+    return errors;
+}
+
+export function validateNotifiche(values) {
+    let errors = {};
+
+    // Mandatory
+    if (!values.docid) {
+        errors.docid = VALIDATE.MANDATORY
+    }
+
+    if (!isValidDate(values.dataDocumentoTributario)) {
+        errors.dataDocumentoTributario = VALIDATE.INVALID_DATE
+    }
 
     // Optional
     if (values.dataDocumento && !isValidDate(values.dataDocumento)) {
