@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import { routeActions } from 'react-router-redux'
 import marked from 'marked'
 
-import introMd from 'intro/intro.md'
-import introImage1 from 'intro/image1.gif'
-import introImage2 from 'intro/image2.gif'
-import introImage3 from 'intro/image3.gif'
-import introImage4 from 'intro/image4.gif'
+// import introMd from 'intro/intro.md'
+// import introImage1 from 'intro/image1.gif'
+// import introImage2 from 'intro/image2.gif'
+// import introImage3 from 'intro/image3.gif'
+// import introImage4 from 'intro/image4.gif'
 
 import homeStyle from './Home.css'
 
@@ -63,7 +63,9 @@ export default connect()((props) => {
             <a href="https://github.com/cybercase/docflyfix">
                 <img style={{position: 'absolute', top: 0, right: 0, border: 0, maxHeight: 130}} src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></img>
             </a>
-            <div className="Home-Guide-Content" dangerouslySetInnerHTML={intro()}></div>
+            {
+                // <div className="Home-Guide-Content" dangerouslySetInnerHTML={intro()}></div>
+            }
         </div>
     </div>
   )
