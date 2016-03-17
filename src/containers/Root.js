@@ -2,15 +2,15 @@ import React from 'react'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import { routeActions } from 'react-router-redux'
 import { Provider, connect } from 'react-redux'
-import configureStore from 'configureStore'
+import configureStore from 'store/configureStore'
 
-import Fatture from 'containers/Fatture'
-import Notifiche from 'containers/Notifiche'
-import Home from 'containers/Home'
-import App from 'containers/App'
+import Fatture from 'containers/Fatture/Fatture'
+import Notifiche from 'containers/Notifiche/Notifiche'
+import Home from 'containers/Home/Home'
+import App from 'containers/App/App'
+
 
 const store = configureStore()
-
 
 export default class Root extends React.Component {
   render() {

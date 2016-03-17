@@ -5,17 +5,17 @@ import Modal from 'react-modal'  // Seems quite unmaintained... feel free to rep
 import Moment from 'moment'
 
 import { RFC3339Nano } from 'utils'
-import File from 'components/File'
-import FormFatture from 'components/FormFatture'
+import File from 'components/File/File'
+import FormFatture from 'components/FormFatture/FormFatture'
 import * as Actions from 'actions'
 
 import { DATE_FORMATS } from 'utils'
 import ipdvTpl from 'templates/ipdv.handlebars'
 
-import notificheStyle from './Fatture+Notifiche.css'
+import fattureStyle from 'style/Fatture+Notifiche.css'
 
 
-class Notifiche extends React.Component {
+class Fatture extends React.Component {
     static propTypes = {
         dispatch: PropTypes.func.isRequired
     }
@@ -32,22 +32,22 @@ class Notifiche extends React.Component {
     }
 
     render() {
-        const { dispatch, notices: { selected, data } } = this.props
+        const { dispatch, invoices: { selected, data } } = this.props
         const { modal, error, ipdv } = this.state
         return (
-            <div className="Notifiche">   
+            <div className="Fatture">   
                 <Modal isOpen={modal} style={modalStyle} onRequestClose={ ::this.handleCloseModal }>
-                    <form className="Notifiche-Modal" onSubmit={ ::this.handleSubmit }>
-                        <div className="Notifiche-Modal-Title">
+                    <form className="Fatture-Modal" onSubmit={ ::this.handleSubmit }>
+                        <div className="Fatture-Modal-Title">
                             Inserisci l'ID del PdV
                         </div>
-                        <div className="Notifiche-Modal-Subtitle">
-                            (es: Notifiche Novembre 2015)
+                        <div className="Fatture-Modal-Subtitle">
+                            (es: Fatture Novembre 2015)
                         </div>
-                        <div className="Notifiche-Modal-Id">
+                        <div className="Fatture-Modal-Id">
                             <input type="text" value={ipdv} onChange={::this.handleIpdvInput} ref={input => input && input.focus()}/>
                         </div>
-                        <div className="Notifiche-Modal-Submit">
+                        <div className="Fatture-Modal-Submit">
                             <input type="submit" value="Download" disabled={ipdv.length == 0}/>
                         </div>
                     </form>
@@ -57,22 +57,22 @@ class Notifiche extends React.Component {
                     { this.getErrorMessage() }
                 </Modal>
 
-                <div className="Notifiche-File">
+                <div className="Fatture-File">
                     <File files={ data }
                           selected={ selected }
                           onSelect={ ::this.handleFileSelection }
                           onAdd={ ::this.handleFileAdd }
                           onRemove={ ::this.handleFileRemove }
                           onDownload={ ::this.handleOpenModal }
-                          dragMessage= { "Trascina qui le Notifiche" } />
+                          dragMessage= { "Trascina qui le Fatture" } />
                 </div>
-                <div className="Notifiche-Form">
+                <div className="Fatture-Form">
                     {
                         data[selected] ? 
                             <FormFatture/>
                             : (
                                 data.length > 0 ?
-                                 <div className="Notifiche-Message">
+                                 <div className="Fatture-Message">
                                     <div>Seleziona un File</div>
                                 </div>
                                 : null
@@ -86,15 +86,15 @@ class Notifiche extends React.Component {
     handleFileRemove(index, file, item, event) {
         event.preventDefault()
         event.stopPropagation()
-        this.props.dispatch(Actions.removeNotice({index, file}))
+        this.props.dispatch(Actions.removeInvoice({index, file}))
     }
 
     handleFileAdd(file, select) {
-        this.props.dispatch(Actions.addNotice({file, select}))
+        this.props.dispatch(Actions.addInvoice({file, select}))
     }
 
     handleFileSelection(index, file, select) {
-        this.props.dispatch(Actions.selectNotice({index}))
+        this.props.dispatch(Actions.selectInvoice({index}))
     }
 
     handleCloseModal() {
@@ -102,8 +102,7 @@ class Notifiche extends React.Component {
     }
 
     handleOpenModal(error) {
-        console.log(this.props, error)
-        error = error || this.props.notices.data.length === 0
+        error = error || this.props.invoices.data.length === 0
 
         let dismissTimeout = null;
         if (error) {
@@ -138,12 +137,12 @@ class Notifiche extends React.Component {
         
         let result = ipdvTpl({
             iddoc: this.state.ipdv,
-            docClass: '3237__Fattura_PA',  // TODO: Replace with Notifche
-            Notifiche: this.props.notices.data.map((notifica) => {
+            docClass: '3237__Fattura_PA',
+            fatture: this.props.invoices.data.map((fattura) => {
                 return {
-                    ...notifica,
-                    dataDocumento: notifica.dataDocumento ? Moment(notifica.dataDocumento, DATE_FORMATS).utc().format(RFC3339Nano) : '',
-                    dataDocumentoTributario: notifica.dataDocumentoTributario ? Moment(notifica.dataDocumentoTributario, DATE_FORMATS).utc().format(RFC3339Nano) : ''
+                    ...fattura,
+                    dataDocumento: fattura.dataDocumento ? Moment(fattura.dataDocumento, DATE_FORMATS).utc().format(RFC3339Nano) : '',
+                    dataDocumentoTributario: fattura.dataDocumentoTributario ? Moment(fattura.dataDocumentoTributario, DATE_FORMATS).utc().format(RFC3339Nano) : ''
                 }
             })
         })
@@ -160,21 +159,23 @@ class Notifiche extends React.Component {
 
     getErrorMessage() {
         // LAME
-        if (this.props.notices.data.length === 0)
+        if (this.props.invoices.data.length === 0)
         {
-            return <div className="Notifiche-Error">
+            return <div className="Fatture-Error">
                 <i className="fa fa-exclamation-circle"></i> Aggiungi almeno un file
             </div>
         }
         else
         {
-            return <div className="Notifiche-Error">
+            return <div className="Fatture-Error">
                 <i className="fa fa-exclamation-circle"></i> Completa i campi in <span style={{color: 'red', fontWeight: '800'}}>rosso</span>
             </div>
         }
     }
 }
 
+
+// Found out that react-modal uses inline styles :(
 const errorStyle = {
     content : {
         top                   : '50%',
@@ -187,4 +188,4 @@ const errorStyle = {
 }
 const modalStyle = errorStyle
 
-export default connect( (state) => { return {notices: state.notices}; } )(Notifiche)
+export default connect( (state) => { return {invoices: state.invoices}; } )(Fatture)

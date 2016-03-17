@@ -6,7 +6,7 @@ import { render } from 'react-dom'
 import Root from './containers/Root'
 import normalizeStyle from 'normalize.css'
 import fontAwesomeStyle from "font-awesome/css/font-awesome.css"
-import mainStyle from './main.css'
+import mainStyle from 'style/main.css'
 
 
 

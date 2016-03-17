@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux'
 import { hashHistory } from 'react-router'
-
 import thunkMiddleware from 'redux-thunk'
 import promiseMiddleware from 'redux-promise'
 import createLogger from 'redux-logger'
-import rootReducer from 'reducers'
 import { syncHistory } from 'react-router-redux'
+
+import rootReducer from 'reducers/root'
 
 const loggerMiddleware = createLogger()
 const reduxRouterMiddleware = syncHistory(hashHistory)
@@ -26,7 +26,7 @@ export default function configureStore(initialState) {
     applyMiddleware(...middlewares)
   )
 
-  reduxRouterMiddleware.listenForReplays(store);
+  reduxRouterMiddleware.listenForReplays(store)
 
   return store;
 }
