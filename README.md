@@ -1,13 +1,11 @@
-# WARNING: This is an alpha version!
-
---------------------------------------------------------------------------------
+# WARNING: This is a BETA version!
 
 # DocFlyFix (ita)
 Un'app **usabile** che **funziona davvero** per generare i tuoi *IPDV*, se sei un cliente di *Aruba DocFly*
 
 
 ##### Devi solo
-- **Navigare** qui:
+- **Navigare** qui: [http://stefano.brilli.me/docflyfix](http://stefano.brilli.me/docflyfix)
 - Cliccare sul **tipo di documento** per cui vuoi creare l'IPDV
 - **Trascinare** i tuoi file nella finestra (o clicca sul pulsante *Aggiungi*)
 - **Compilare** i campi richiesti per ogni file aggiunto
@@ -20,17 +18,12 @@ Un'app **usabile** che **funziona davvero** per generare i tuoi *IPDV*, se sei u
 ##### Note
 - Non verra' fatto nessun *upload* dei tuoi file. I file vengono letti esclusivamente al fine di calcolare l'*hash* richiesto dall'*IPDV*. **La tua privacy e' al sicuro**
 
-##### Glossario
-- IPDV: Acronimo per *Indice Pacchetto Di Veramento*. Si tratta di un documento `xml` che elenca i file che possono essere conservati all'interno di un PDV. Non e' modificabile, per questo prima di creare un PDV e' necessario aggiungere tutti i file da conservare a questo Indice.
-- PDV: Acronimo per *Paccheto Di Veramento*. In pratica e' una "cartella" creata per contenere i file di un dato IPDV.
-
-
 
 # DocFlyFix (eng)
 A **usable** and **actually working** app to generate your *IPDV*, for *Aruba DocFly* customers
 
 ##### Just:
-- **Navigate** here:
+- **Navigate** here: [http://stefano.brilli.me/docflyfix](http://stefano.brilli.me/docflyfix)
 - Click the **document class** for which you want create the IPDV
 - **Drag** your file into the window (or just click "Add")
 - **Fill** the required fields for each file
@@ -41,8 +34,3 @@ A **usable** and **actually working** app to generate your *IPDV*, for *Aruba Do
 
 ##### Note:
 - Your file will not be uploaded anywhere. They will be read just to compute the *hash* required by the *IPDV*. **Your privacy is safe.** :)
-
-##### Glossary
-- IPDV: Acronym for *Indice Pacchetto Di Veramento* (Index of Deposit Package). It's an `xml` docuement listing all the files that can be stored into a PDV. It can't be changed, that's why all the files must be listed before creating the PDV.
-- PDV: Acronym for *Paccheto Di Veramento* (Deposit Package). It's just a "folder" that stores all the files indexed by a given IPDV
-
