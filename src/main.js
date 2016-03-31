@@ -1,4 +1,3 @@
-import IndexHTML from 'file?name=[name].[ext]!./index.html';
 import 'babel-polyfill'
 
 import React from 'react'

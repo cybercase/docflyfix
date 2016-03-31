@@ -4,6 +4,7 @@ var path = require('path');
 
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // css modules
 var autoprefixer = require('autoprefixer');
@@ -59,12 +60,13 @@ module.exports = [{
 
   output: {
     path: path.resolve(rootDir, distDir),
-    filename: 'main.bundle.js',
+    filename: '[name]-[hash].bundle.js',
     publicPath: ''
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"[name]-[hash].bundle.js"),
+    new HtmlWebpackPlugin({template: './index.html'}),
   ].concat(DEBUG ? [
         new webpack.DefinePlugin({__DEBUG: true})
       ] : [
@@ -83,67 +85,67 @@ module.exports = [{
 
   module: {
 
-    loaders: [
-      // HANDLEBARS
-      {
-        test: /\.handlebars$/,
-        loader: "handlebars-loader"
-      },
-      // TPL
-      {
-        test: /.(txt|md)$/,
-        loader: 'raw-loader'
-      },
-
-      // FONTS
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&name=fonts/[path][name].[ext]?[hash]&mimetype=application/font-woff"
-      },
-      {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "file-loader?name=fonts/[path][name].[ext]"
-      },
-
-      // CSS
-      {
+    loaders: (DEBUG ? [{
         test: /\.css/,
-        // loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
         loader: "style!css?root=.!postcss",
-      },
+      }] : [{
+        test: /\.css/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+      }])
+      .concat([
+        // HANDLEBARS
+        {
+          test: /\.handlebars$/,
+          loader: "handlebars-loader"
+        },
+        // TPL
+        {
+          test: /.(txt|md)$/,
+          loader: 'raw-loader'
+        },
 
-      // IMAGES
-      {
-        test: /(\.jpg|\.jpeg)/,
-        loader: 'url-loader?limit=10000&name=images/[path][name].[ext]?[hash]&mimetype=image/jpg',
-      },
-      {
-        test: /\.png/,
-        loader: 'url-loader?limit=10000&name=images/[path][name].[ext]?[hash]&mimetype=image/png',
-      },
-      {
-        test: /\.svg/,
-        loader: 'url-loader?limit=10000&name=images/[path][name].[ext]?[hash]&mimetype=image/svg',
-      },
-      {
-        test: /\.gif/,
-        loader: 'url-loader?limit=5000&name=images/[path][name].[ext]?[hash]&mimetype=image/gif',
-      },
+        // FONTS
+        {
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&name=fonts/[path][name].[ext]?[hash]&mimetype=application/font-woff"
+        },
+        {
+          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "file-loader?name=fonts/[path][name].[ext]"
+        },
 
-      // JS
-      {
-        loader: 'babel-loader',
-        test: /\.jsx?$/,
+        // IMAGES
+        {
+          test: /(\.jpg|\.jpeg)/,
+          loader: 'url-loader?limit=10000&name=images/[path][name].[ext]?[hash]&mimetype=image/jpg',
+        },
+        {
+          test: /\.png/,
+          loader: 'url-loader?limit=10000&name=images/[path][name].[ext]?[hash]&mimetype=image/png',
+        },
+        {
+          test: /\.svg/,
+          loader: 'url-loader?limit=10000&name=images/[path][name].[ext]?[hash]&mimetype=image/svg',
+        },
+        {
+          test: /\.gif/,
+          loader: 'url-loader?limit=5000&name=images/[path][name].[ext]?[hash]&mimetype=image/gif',
+        },
 
-        exclude: /(node_modules)/,
-        include: [path.resolve(rootDir, 'src'), /node_modules\/react\-forms/],
-        cacheDirectory: true,
-        plugins: ['transform-runtime']
-        // query: {
-        //   presets: ['es2015', 'react', 'stage-0']
-        // }
-      }
-    ]
+        // JS
+        {
+          loader: 'babel-loader',
+          test: /\.jsx?$/,
+
+          exclude: /(node_modules)/,
+          include: [path.resolve(rootDir, 'src'), /node_modules\/react\-forms/],
+          cacheDirectory: true,
+          plugins: ['transform-runtime']
+          // query: {
+          //   presets: ['es2015', 'react', 'stage-0']
+          // }
+        }
+    ])
 
   },
 
