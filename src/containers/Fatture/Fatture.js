@@ -6,7 +6,7 @@ import Moment from 'moment'
 
 import { RFC3339Nano } from 'utils'
 import File from 'components/File/File'
-import FormFatture from 'components/FormFatture/FormFatture'
+import CreateForm from 'components/FormFatture/FormFatture'
 import * as Actions from 'actions'
 
 import { DATE_FORMATS } from 'utils'
@@ -20,12 +20,15 @@ class Fatture extends React.Component {
         dispatch: PropTypes.func.isRequired
     }
 
+    static Form = CreateForm('fatture', 'invoices')
+
     constructor(...args) {
         super(...args)
 
         this.state = {
             modal: false,
             error: false,
+            reset: false,
             dismissTimeout: null,
             ipdv: ""
         }
@@ -33,13 +36,13 @@ class Fatture extends React.Component {
 
     render() {
         const { dispatch, invoices: { selected, data } } = this.props
-        const { modal, error, ipdv } = this.state
+        const { modal, error, ipdv, reset } = this.state
         return (
             <div className="Fatture">   
                 <Modal isOpen={modal} style={modalStyle} onRequestClose={ ::this.handleCloseModal }>
                     <form className="Fatture-Modal" onSubmit={ ::this.handleSubmit }>
                         <div className="Fatture-Modal-Title">
-                            Inserisci l'ID del PdV
+                            Inserisci ID del PdV
                         </div>
                         <div className="Fatture-Modal-Subtitle">
                             (es: Fatture Novembre 2015)
@@ -57,6 +60,12 @@ class Fatture extends React.Component {
                     { this.getErrorMessage() }
                 </Modal>
 
+                <Modal isOpen={reset} style={errorStyle} onRequestClose={ ::this.handleDismissReset }>
+                    <div className="Fatture-Reset">
+                        <a href='#' onClick={::this.handleReset} style={{color: 'red', fontWeight: '800'}}>Conferma Reset</a> o <a href="#" onClick={::this.handleDismissReset}>Annulla</a>
+                    </div>
+                </Modal>
+
                 <div className="Fatture-File">
                     <File files={ data }
                           selected={ selected }
@@ -64,12 +73,13 @@ class Fatture extends React.Component {
                           onAdd={ ::this.handleFileAdd }
                           onRemove={ ::this.handleFileRemove }
                           onDownload={ ::this.handleOpenModal }
+                          onReset={ ::this.handleOpenReset }
                           dragMessage= { "Trascina qui le Fatture" } />
                 </div>
                 <div className="Fatture-Form">
                     {
                         data[selected] ? 
-                            <FormFatture/>
+                            <Fatture.Form/>
                             : (
                                 data.length > 0 ?
                                  <div className="Fatture-Message">
@@ -89,6 +99,11 @@ class Fatture extends React.Component {
         this.props.dispatch(Actions.removeInvoice({index, file}))
     }
 
+    handleReset(e) {
+        this.props.dispatch(Actions.resetInvoice())
+        this.handleDismissReset(e)
+    }
+
     handleFileAdd(file, select) {
         this.props.dispatch(Actions.addInvoice({file, select}))
     }
@@ -99,6 +114,15 @@ class Fatture extends React.Component {
 
     handleCloseModal() {
         this.setState({modal: false})
+    }
+
+    handleDismissReset(e) {
+        this.setState({reset: false})
+        e && e.preventDefault()
+    }
+
+    handleOpenReset() {
+        this.setState({reset: true})
     }
 
     handleOpenModal(error) {

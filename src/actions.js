@@ -5,16 +5,20 @@ import hash from 'hash.js'
 export const SELECT_INVOICE = 'SELECT_INVOICE';
 export const REMOVE_INVOICE = 'REMOVE_INVOICE';
 export const ADD_INVOICE = 'ADD_INVOICE';
+export const RESET_INVOICE = 'RESET_INVOICE';
 
 export const SELECT_NOTICE = 'SELECT_NOTICE';
 export const REMOVE_NOTICE = 'REMOVE_NOTICE';
 export const ADD_NOTICE = 'ADD_NOTICE';
+export const RESET_NOTICE = 'RESET_NOTICE';
 
 export const selectInvoice = createAction(SELECT_INVOICE)
 export const removeInvoice = createAction(REMOVE_INVOICE)
+export const resetInvoice = createAction(RESET_INVOICE)
 
 export const selectNotice = createAction(SELECT_NOTICE)
 export const removeNotice = createAction(REMOVE_NOTICE)
+export const resetNotice = createAction(RESET_NOTICE)
 
 
 //TODO: Maybe remove duplicated code in addInvoice/addNotice ?

@@ -30,13 +30,11 @@ export default connect()((props) => {
                     <div>
                         { leaf.name }
                     </div>
-                    {
-                        hiearchy.length === 1 ?
-                            <div className="App-Title-Link App-Title-Link--motto">
-                                Un'app <a target="_blank" href="https://it.wikipedia.org/wiki/Usabilità"><strong>usabile</strong></a> che <strong>funziona bene</strong> per generare i tuoi IPDV... per i clienti di <a target="_blank" href="https://www.docfly.it/"><strong>Aruba DocFly Conservazione Digitale</strong></a>
-                            </div>
-                            : null
-                    }
+                </div>
+            </div>
+            <div className="App-Subtitle">
+                <div>
+                    Generatore di <strong>IPDV</strong> per i clienti di <a target="_blank" href="https://www.docfly.it/"><strong> Aruba DocFly Conservazione Digitale</strong></a>
                 </div>
             </div>
             <div className="App-Content">

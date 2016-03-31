@@ -20,8 +20,8 @@ const FILE_FIELDS = [
 const BASIC_FIELDS = [
     // Doc
     {id: 'docid', label: 'ID Documento', mandatory: true},
-    {id: 'dataDocumento', label: 'Data Documento', placeholder: 'gg/mm/anno'},
     {id: 'dataDocumentoTributario', label: 'Data Documento Tributario', mandatory: true, placeholder: 'gg/mm/anno'},
+    {id: 'dataDocumento', label: 'Data Documento', placeholder: 'gg/mm/anno'},
     {id: 'oggettodocumento', label: 'Oggetto Documento'},
 ]
 
@@ -180,19 +180,38 @@ class FormFatture extends React.Component {
 }
 
 
-export default reduxForm({
-    form: 'fatture',
-    fields: [].concat(
-        FILE_FIELDS,
-        BASIC_FIELDS,
-        PRODUCER_FIELDS,
-        CONSUMER_FIELDS,
-        TAX_FIELDS,
-        EXTRA_FIELDS
-    ).map(f => f.id),
-    validate: validateFatture
-}, (state) => {
-    return {
-        initialValues: state.invoices.data[state.invoices.selected]
-    }
-})(FormFatture)
+export default function CreateForm(formName, reducer) {
+    return reduxForm({
+        form: formName,
+        fields: [].concat(
+            FILE_FIELDS,
+            BASIC_FIELDS,
+            PRODUCER_FIELDS,
+            CONSUMER_FIELDS,
+            TAX_FIELDS,
+            EXTRA_FIELDS
+        ).map(f => f.id),
+        validate: validateFatture
+    }, (state) => {
+        return {
+            initialValues: state[reducer].data[state[reducer].selected]
+        }
+    })(FormFatture)
+}
+
+// export default reduxForm({
+//     form: 'fatture',
+//     fields: [].concat(
+//         FILE_FIELDS,
+//         BASIC_FIELDS,
+//         PRODUCER_FIELDS,
+//         CONSUMER_FIELDS,
+//         TAX_FIELDS,
+//         EXTRA_FIELDS
+//     ).map(f => f.id),
+//     validate: validateFatture
+// }, (state) => {
+//     return {
+//         initialValues: state.invoices.data[state.invoices.selected]
+//     }
+// })(FormFatture)

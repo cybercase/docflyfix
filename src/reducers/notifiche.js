@@ -4,11 +4,19 @@ import update from 'react-addons-update'
 import Moment from 'moment'
 
 import { validateNotifiche, RFC3339Nano } from 'utils'
-import { ADD_NOTICE, REMOVE_NOTICE, SELECT_NOTICE } from 'actions'
+import { ADD_NOTICE, REMOVE_NOTICE, SELECT_NOTICE, RESET_NOTICE } from 'actions'
+
+const defaultState = {
+    selected: 0,
+    data: []
+}
 
 // TODO: Maybe there's a better way than just copy&paste the invocesReducer...
 // Let's wait to see how notices work before refactoring/merging the 2 reducers
 export default handleActions({
+    [RESET_NOTICE]: (state, action) => {
+        return defaultState
+    },
     [ADD_NOTICE]: {
         next(state, action) {
             const { name, sha256, type, select } = action.payload;
@@ -72,7 +80,7 @@ export default handleActions({
                     [state.selected]: {
                         $set: {
                             ...newData,
-                            error: validateFatture(newData)
+                            error: validateNotifiche(newData)
                         }
                     }
                 }
@@ -80,7 +88,4 @@ export default handleActions({
         }
     }
 
-}, {
-    selected: 0,
-    data: []
-})
+}, defaultState)

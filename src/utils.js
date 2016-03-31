@@ -33,7 +33,7 @@ export function isValidDate(date) {
     return d.isValid()
 }
 
-export function validateFatture(values) {
+function validateForm(values) {
     let errors = {};
 
     // Mandatory
@@ -53,23 +53,7 @@ export function validateFatture(values) {
     return errors;
 }
 
-export function validateNotifiche(values) {
-    let errors = {};
-
-    // Mandatory
-    if (!values.docid) {
-        errors.docid = VALIDATE.MANDATORY
-    }
-
-    if (!isValidDate(values.dataDocumentoTributario)) {
-        errors.dataDocumentoTributario = VALIDATE.INVALID_DATE
-    }
-
-    // Optional
-    if (values.dataDocumento && !isValidDate(values.dataDocumento)) {
-        errors.dataDocumento = VALIDATE.INVALID_DATE
-    }
-
-    return errors;
+export {
+    validateForm as validateFatture,
+    validateForm as validateNotifiche
 }
-

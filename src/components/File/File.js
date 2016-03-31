@@ -16,6 +16,7 @@ class File extends React.Component {
         onRemove: PropTypes.func.isRequired,
         onAdd: PropTypes.func.isRequired,
         onDownload: PropTypes.func.isRequired,
+        onReset: PropTypes.func.isRequired,
         dragMessage: PropTypes.string.isRequired
     }
 
@@ -25,10 +26,15 @@ class File extends React.Component {
                 <div className="File-Menu">
                     <div className="File-Menu-Add">
                         <button className="File-Menu-Add-Button" onClick={::this.handleAddFile} >Aggiungi</button>
-                        <div className="File-Menu-Add-Message">oppure trascina i file nella lista</div>
+                        {
+                            // <div className="File-Menu-Add-Message">oppure trascina i file nella lista</div>
+                        }
                     </div>
                     <div className="File-Menu-Download">
-                        <button className="File-Menu-Download-Button" onClick={::this.handleDownload}>Download IPDV</button>
+                        <button className="File-Menu-Download-Button" onClick={::this.handleDownload}>Download</button>
+                    </div>
+                    <div className="File-Menu-Reset">
+                        <button className="File-Menu-Download-Button" onClick={::this.handleReset}>Reset Lista</button>
                     </div>
                 </div>
 
@@ -38,7 +44,7 @@ class File extends React.Component {
                         <div className="File-Message">
                             <div>
                                 <div className="File-Message-Title">{ this.props.dragMessage }</div>
-                                <div className="File-Message-Subtitle">o clicca sul pulsante Aggiungi</div>
+                                <div className="File-Message-Subtitle">o clicca sul pulsante <strong>Aggiungi</strong></div>
                             </div>
                         </div>
                         : null
@@ -121,6 +127,10 @@ class File extends React.Component {
         }
 
         this.props.onDownload(error);
+    }
+
+    handleReset() {
+        this.props.onReset();
     }
 }
 

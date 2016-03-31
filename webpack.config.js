@@ -24,7 +24,7 @@ module.exports = [{
 
   cache: DEBUG ? {} : false,
   debug: DEBUG,
-  devtool: DEBUG ? 'inline-source-map' : undefined,  //cheap-module-eval-source-map
+  devtool: DEBUG ? 'cheap-inline-source-map' : undefined,  //cheap-module-eval-source-map
 
   entry: {
     vendor: ['babel-polyfill', 'react', 'moment', 'redux-form', 'lodash', 'react-redux', 'react-router', 'history',

@@ -8,6 +8,10 @@
         font-size: 24px;
     }
 
+    &-Reset {
+        font-size: 24px;
+    }
+
     &-Modal {
         text-align: center;
         &-Title {

@@ -10,7 +10,7 @@ import rootReducer from 'reducers/root'
 const loggerMiddleware = createLogger()
 const reduxRouterMiddleware = syncHistory(hashHistory)
 
-export default function configureStore(initialState) {
+export default function configureStore() {
   let middlewares = [thunkMiddleware,
       promiseMiddleware,
       reduxRouterMiddleware
@@ -20,6 +20,11 @@ export default function configureStore(initialState) {
     middlewares.push(loggerMiddleware)
   }
 
+  let initialState = {}
+  if (window.localStorage.docflyFixData) {
+    initialState = JSON.parse(window.localStorage.docflyFixData);
+  }
+
   let store = createStore(
     rootReducer,
     initialState,
@@ -27,6 +32,10 @@ export default function configureStore(initialState) {
   )
 
   reduxRouterMiddleware.listenForReplays(store)
+
+  window.onbeforeunload = (e) => {
+    window.localStorage.docflyFixData = JSON.stringify(store.getState());
+  }
 
   return store;
 }

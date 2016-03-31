@@ -4,10 +4,17 @@ import update from 'react-addons-update'
 import Moment from 'moment'
 
 import { validateFatture, RFC3339Nano } from 'utils'
-import {ADD_INVOICE, REMOVE_INVOICE, SELECT_INVOICE } from 'actions'
+import {ADD_INVOICE, REMOVE_INVOICE, SELECT_INVOICE, RESET_INVOICE } from 'actions'
 
+const defaultState = {
+    selected: 0,
+    data: []
+}
 
 export default handleActions({
+    [RESET_INVOICE]: (state, action) => {
+        return defaultState;
+    },
     [ADD_INVOICE]: {
         next(state, action) {
             const { name, sha256, type, select } = action.payload;
@@ -79,7 +86,4 @@ export default handleActions({
         }
     }
 
-}, {
-    selected: 0,
-    data: []
-})
+}, defaultState)
