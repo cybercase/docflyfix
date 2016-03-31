@@ -3,7 +3,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var path = require('path');
 
 var webpack = require('webpack');
-// var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 // css modules
 var autoprefixer = require('autoprefixer');
@@ -27,7 +27,8 @@ module.exports = [{
   devtool: DEBUG ? 'inline-source-map' : undefined,  //cheap-module-eval-source-map
 
   entry: {
-    vendor: ['babel-polyfill', 'react'],
+    vendor: ['babel-polyfill', 'react', 'moment', 'redux-form', 'lodash', 'react-redux', 'react-router', 'history',
+             'redux-actions', 'hash.js', 'react-dropzone', 'react-list'],
     main: './main.js'
   },
 
@@ -59,12 +60,11 @@ module.exports = [{
   output: {
     path: path.resolve(rootDir, distDir),
     filename: 'main.bundle.js',
-    publicPath: '/'
+    publicPath: ''
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
-    // new ExtractTextPlugin("[name].css")
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
   ].concat(DEBUG ? [
         new webpack.DefinePlugin({__DEBUG: true})
       ] : [
@@ -74,6 +74,7 @@ module.exports = [{
             NODE_ENV: '"production"'
           }
         }),
+        new ExtractTextPlugin("[name]-[hash].css"),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(),
