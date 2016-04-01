@@ -21,20 +21,22 @@ class File extends React.Component {
     }
 
     render() {
+        console.log('ehi', this.props.files.length)
         return (
             <Dropzone ref="dropzone" className="File" onDrop={::this.handleDropFile} disableClick={true}>
                 <div className="File-Menu">
                     <div className="File-Menu-Add">
-                        <button className="File-Menu-Add-Button" onClick={::this.handleAddFile} >Aggiungi</button>
+                        <button className="File-Menu-Add-Button" onClick={::this.handleAddFile} >Aggiungi File</button>
                         {
                             // <div className="File-Menu-Add-Message">oppure trascina i file nella lista</div>
                         }
                     </div>
                     <div className="File-Menu-Download">
-                        <button className="File-Menu-Download-Button" onClick={::this.handleDownload}>Download</button>
+                        <button className="File-Menu-Download-Button" onClick={::this.handleDownload}>Scarica IPDV</button>
                     </div>
                     <div className="File-Menu-Reset">
-                        <button className="File-Menu-Download-Button" onClick={::this.handleReset}>Reset Lista</button>
+                        <button className="File-Menu-Download-Button" onClick={::this.handleReset}
+                                disabled={this.props.files.length === 0}>Svuota Lista</button>
                     </div>
                 </div>
 

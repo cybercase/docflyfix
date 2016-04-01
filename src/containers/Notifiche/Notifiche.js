@@ -62,7 +62,7 @@ class Notifiche extends React.Component {
 
                 <Modal isOpen={reset} style={errorStyle} onRequestClose={ ::this.handleDismissReset }>
                     <div className="Notifiche-Reset">
-                        <a href='#' onClick={::this.handleReset} style={{color: 'red', fontWeight: '800'}}>Conferma Reset</a> o <a href="#" onClick={::this.handleDismissReset}>Annulla</a>
+                        <a href='#' onClick={::this.handleReset} style={{color: 'red', fontWeight: '800'}}>Svuota Lista</a> o <a href="#" onClick={::this.handleDismissReset}>Annulla</a>
                     </div>
                 </Modal>
 
@@ -93,10 +93,10 @@ class Notifiche extends React.Component {
         )
     }
 
-    handleFileRemove(index, file, item, event) {
+    handleFileRemove(index, event) {
         event.preventDefault()
         event.stopPropagation()
-        this.props.dispatch(Actions.removeNotice({index, file}))
+        this.props.dispatch(Actions.removeNotice({index}))
     }
 
     handleReset(e) {
@@ -108,7 +108,7 @@ class Notifiche extends React.Component {
         this.props.dispatch(Actions.addNotice({file, select}))
     }
 
-    handleFileSelection(index, file, select) {
+    handleFileSelection(index) {
         this.props.dispatch(Actions.selectNotice({index}))
     }
 

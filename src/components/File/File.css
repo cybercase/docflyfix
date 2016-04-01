@@ -29,10 +29,9 @@
         justify-content: space-between;
 
         &-Add {
-            flex: 0 1 0;
+            flex: 0 1 auto;
             display: flex;
             flex-direction: column;
-            width: 33%;
 
             &-Button {
                 width: 100%;
@@ -46,8 +45,7 @@
         }
 
         &-Download {
-            flex: 0 1 0;
-            width: 33%;
+            flex: 0 1 auto;
             display: flex;
             flex-direction: column;
             &-Button {
@@ -56,8 +54,7 @@
         }
 
         &-reset {
-            flex: 0 1 0;
-            width: 33%;
+            flex: 0 1 auto;
             display: flex;
             flex-direction: column;
 
