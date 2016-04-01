@@ -14,6 +14,9 @@ body {
 button {
   padding: 20px;
   font-size: 18px;
+  &[disabled] {
+    color: #AAA;
+  }
 }
 
 .Main {
